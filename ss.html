@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe App</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000; /* Black background */
+            color: #0000FF; /* Blue text */
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 100vh; /* Make the body take up the full viewport height */
+        }
+        h1 {
+            color: #0000FF; /* Blue heading */
+        }
+        input {
+            background-color: #fff; /* White input background */
+            border-color: #4b5563;
+            color: #0000FF;
+            placeholder-color: #94a3b8;
+        }
+        input::placeholder {
+            color: #94a3b8; /* Lighter placeholder text */
+        }
+        button {
+            color: #fff;
+        }
+
+        .bg-blue-500 {
+            background-color: #3b82f6; /* Lighter blue for buttons */
+        }
+
+        .bg-blue-600:hover{
+             background-color: #2563eb;
+        }
+        .bg-blue-200{
+            background-color: #e0f2fe;
+        }
+        .text-blue-800{
+            color: #0000FF;
+        }
+        .border-blue-300{
+            border-color: #93c5fd;
+        }
+        .shadow-blue-200\/50{
+             box-shadow: 0 4px 6px -1px rgba(129, 199, 246, 0.1), 0 2px 4px -1px rgba(129, 199, 246, 0.06);
+        }
+
+        .bg-red-100 {
+            background-color: #ef44441a;
+        }
+        .border-red-400 {
+            border-color: #ef444466;
+        }
+        .text-red-700 {
+            color: #f87171;
+        }
+
+        .bg-white\/90 {
+            background-color: #1e293b;
+        }
+        .border-blue-200 {
+            border-color: #4b5563;
+        }
+        .text-blue-800 {
+            color: #0000FF;
+        }
+        .border-blue-300 {
+            border-color: #6b7280;
+        }
+        .shadow-blue-200\/50{
+            box-shadow: 0 4px 6px -1px rgba(75, 85, 99, 0.1), 0 2px 4px -1px rgba(75, 85, 99, 0.06);
+        }
+
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-100 to-blue-300 p-4 sm:p-8 dark:bg-gray-900">
+    <div class="max-w-4xl mx-auto space-y-6">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-center text-blue-700 mb-6 tracking-tight dark:text-blue-400">
+            <span class="inline-block transform rotate-[-6deg] mr-2">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 sm:w-10 sm:h-10 text-blue-600 dark:text-blue-300"><path d="M15 10v-2a5 5 0 0 0-9.29-.67"></path><path d="M19.13 15.13A5 5 0 0 0 16 17v-7a3 3 0 0 0-3-3H7"></path><path d="M15 10l3 3-3 3"></path></svg>
+            </span>
+            Recipe Finder
+            <span class="inline-block transform rotate-[6deg] ml-2">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 sm:w-10 sm:h-10 text-blue-600 dark:text-blue-300"><path d="M15 10v-2a5 5 0 0 0-9.29-.67"></path><path d="M19.13 15.13A5 5 0 0 0 16 17v-7a3 3 0 0 0-3-3H7"></path><path d="M15 10l3 3-3 3"></path></svg>
+            </span>
+        </h1>
+
+        <div class="space-y-4">
+            <div class="flex flex-col sm:flex-row items-center gap-4">
+                <input
+                    type="text"
+                    id="ingredientInput"
+                    placeholder="Enter ingredient"
+                    class="flex-1 bg-white/80 border-blue-300 text-blue-800 placeholder:text-blue-400 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 shadow-sm shadow-blue-200/50 rounded-md px-4 py-3 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:ring-blue-400 dark:focus:border-blue-400"
+                />
+                <div class="flex gap-4">
+                    <button
+                        id="addIngredientBtn"
+                        class="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-3 rounded-md transition-colors duration-300 shadow-md hover:shadow-lg dark:bg-blue-400 dark:hover:bg-blue-500"
+                    >
+                        Add
+                    </button>
+                    <button
+                        id="searchRecipesBtn"
+                        class="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-6 py-3 rounded-md transition-colors duration-300 shadow-md hover:shadow-lg flex items-center gap-2 dark:bg-blue-400 dark:hover:bg-blue-500"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                        Search
+                    </button>
+                </div>
+            </div>
+
+            <div id="ingredientsDisplay" class="flex flex-wrap gap-2 justify-center">
+                </div>
+        </div>
+
+        <div id="errorDisplay" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative dark:bg-red-900/90 dark:border-red-700 dark:text-red-400" role="alert" style="display: none;">
+            <strong class="font-bold">Error: </strong>
+            <span class="block sm:inline"></span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="absolute left-4 top-1 w-5 h-5 text-red-500"><path d="M21.73 18a2 2 0 0 0-1.73-1H3.73a2 2 0 0 0-1.73 1A2 2 0 0 0 2 20v1a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-1a2 2 0 0 0-.27-2z"></path><path d="M12 9v4"></path><path d="M12 17h.01"></path></svg>
+        </div>
+
+        <div id="recipesDisplay" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        </div>
+
+        <button id="scrollToTopBtn" class="fixed bottom-8 right-8 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-full p-3 shadow-lg transition-colors duration-300 z-50 dark:bg-blue-400 dark:hover:bg-blue-500" title="Scroll to Top" style="display: none;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><polyline points="18 15 12 9 6 15"></polyline><polyline points="18 9 12 3 6 9"></polyline></svg>
+        </button>
+    </div>
+
+    <script>
+        const ingredientInput = document.getElementById('ingredientInput');
+        const addIngredientBtn = document.getElementById('addIngredientBtn');
+        const ingredientsDisplay = document.getElementById('ingredientsDisplay');
+        const searchRecipesBtn = document.getElementById('searchRecipesBtn');
+        const recipesDisplay = document.getElementById('recipesDisplay');
+        const errorDisplay = document.getElementById('errorDisplay');
+        const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+
+        let ingredients = [];
+        let expandedRecipes = new Set();
+        let recipes = [];
+
+        const apiKey = "7eb94ef455104478b6fab75575e58bde";
+
+        addIngredientBtn.addEventListener('click', () => {
+            const ingredient = ingredientInput.value.trim();
+            if (ingredient && !ingredients.includes(ingredient)) {
+                ingredients.push(ingredient);
+                renderIngredients();
+                ingredientInput.value = '';
+            }
+        });
+
+        searchRecipesBtn.addEventListener('click', fetchRecipes);
+        scrollToTopBtn.addEventListener('click', scrollToTop);
+
+        ingredientInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                addIngredientBtn.click();
+            }
+        });
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 200) {
+                scrollToTopBtn.style.display = 'block';
+            } else {
+                scrollToTopBtn.style.display = 'none';
+            }
+        });
+
+        function renderIngredients() {
+            ingredientsDisplay.innerHTML = '';
+            ingredients.forEach(ingredient => {
+                const ingredientDiv = document.createElement('div');
+                ingredientDiv.className = "bg-blue-200 text-blue-800 px-3 py-1 rounded-full flex items-center gap-2 border border-blue-300 shadow-sm dark:bg-blue-800 dark:text-blue-200 dark:border-blue-700 dark:shadow-blue-800/50";
+                ingredientDiv.textContent = ingredient;
+
+                const removeButton = document.createElement('button');
+                removeButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>`;
+                removeButton.className = "text-blue-600 hover:text-blue-800 transition-colors duration-200 dark:text-blue-400 dark:hover:text-blue-300";
+                removeButton.title = `Remove ${ingredient}`;
+                removeButton.addEventListener('click', () => {
+                    ingredients = ingredients.filter(i => i !== ingredient);
+                    renderIngredients();
+                });
+
+                ingredientDiv.appendChild(removeButton);
+                ingredientsDisplay.appendChild(ingredientDiv);
+            });
+        }
+
+        async function fetchRecipes() {
+            if (ingredients.length === 0) {
+                recipesDisplay.innerHTML = '';
+                setError(null);
+                return;
+            }
+
+            setLoading(true);
+            setError(null);
+            recipesDisplay.innerHTML = `<div class="col-span-full flex justify-center items-center"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="animate-spin w-8 h-8 text-blue-500 dark:text-blue-300"><path d="M21 12a10 10 0 1 0-20 0h0"></path><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg> Searching...`;
+
+            try {
+                const ingredientList = ingredients.map(i => i.trim()).join(',');
+                const apiUrl = `https://api.spoonacular.com/recipes/findByIngredients?ingredients=${ingredientList}&number=10&apiKey=${apiKey}`;
+
+                const response = await fetch(apiUrl);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+
+                if (data && Array.isArray(data)) {
+                    const formattedRecipes = await Promise.all(data.map(async (recipe) => {
+                        try{
+                            const recipeInfoUrl = `https://api.spoonacular.com/recipes/${recipe.id}/information?includeNutrition=false&apiKey=${apiKey}`;
+                            const recipeInfoResponse = await fetch(recipeInfoUrl);
+                            const recipeInfoData = await recipeInfoResponse.json();
+                            return {
+                                id: recipe.id.toString(),
+                                title: recipe.title,
+                                image: recipe.image,
+                                instructions: recipeInfoData.instructions || "Instructions not available.",
+                            };
+                        } catch(error){
+                            console.error("Failed to fetch recipe details", error);
+                             return {
+                                id: recipe.id.toString(),
+                                title: recipe.title,
+                                image: recipe.image,
+                                instructions: "Instructions not available.",
+                            }
+                        }
+                    }));
+                    recipes = formattedRecipes;
+                    renderRecipes();
+                } else {
+                    recipes = [];
+                    setError('No recipes found for the given ingredients. Please try again.');
+                    renderRecipes();
+                }
+            } catch (error) {
+                setError(error.message || 'An error occurred while fetching recipes.');
+                recipes = [];
+                renderRecipes();
+            } finally {
+                setLoading(false);
+            }
+        }
+
+        function renderRecipes() {
+            recipesDisplay.innerHTML = '';
+            if (recipes.length === 0) {
+                if(error){
+                    errorDisplay.style.display = 'block';
+                    errorDisplay.querySelector('span').textContent = error;
+                }
+                else{
+                    recipesDisplay.innerHTML = `<div class="col-span-full text-center text-gray-500 py-8 dark:text-gray-400">No recipes found. Please try different ingredients.</div>`;
+                }
+                return;
+            }
+            errorDisplay.style.display = 'none';
+
+            recipes.forEach(recipe => {
+                const recipeCard = document.createElement('div');
+                recipeCard.className = `bg-white/90 backdrop-blur-md border border-blue-200 rounded-md transition-all duration-300 hover:shadow-lg hover:scale-[1.01] hover:border-blue-300 overflow-hidden ${expandedRecipes.has(recipe.id.toString()) ? "shadow-xl" : "shadow-md"} dark:bg-gray-800/90 dark:border-blue-700 dark:hover:border-blue-600`;
+                recipeCard.innerHTML = `
+                    <div class="card-header">
+                        <h3 class="text-blue-800 font-semibold text-lg truncate px-4 py-2 dark:text-blue-200">${recipe.title}</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="relative group">
+                            <img src="${recipe.image}" alt="${recipe.title}" class="w-full h-48 object-cover rounded-md transition-transform duration-300">
+                            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 rounded-md transition-colors duration-300 flex items-center justify-center">
+                                <p class="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 font-semibold text-center px-4">
+                                    ${expandedRecipes.has(recipe.id.toString()) ? "Click to collapse" : "Click for details"}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="mt-4 overflow-hidden max-h-0 transition-all duration-300" id="instructions-${recipe.id}">
+                            <p class="text-blue-700 text-sm whitespace-pre-line px-4 dark:text-blue-300">${recipe.instructions}</p>
+                        </div>
+                    </div>
+                `;
+                const instructionsDiv = recipeCard.querySelector(`#instructions-${recipe.id}`);
+
+                recipeCard.addEventListener('click', () => {
+                    toggleRecipeExpansion(recipe.id.toString(), instructionsDiv);
+                });
+
+                recipesDisplay.appendChild(recipeCard);
+            });
+        }
+
+        function toggleRecipeExpansion(recipeId, instructionsDiv) {
+            if (expandedRecipes.has(recipeId)) {
+                expandedRecipes.delete(recipeId);
+                instructionsDiv.style.maxHeight = '0px';
+            } else {
+                expandedRecipes.add(recipeId);
+                instructionsDiv.style.maxHeight = `${instructionsDiv.scrollHeight}px`;
+            }
+            renderRecipes();
+        }
+
+        function setLoading(isLoading) {
+            if (isLoading) {
+                searchRecipesBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="animate-spin w-5 h-5 mr-2 text-blue-500 dark:text-blue-300"><path d="M21 12a10 10 0 1 0-20 0h0"></path><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg> Searching...`;
+                searchRecipesBtn.disabled = true;
+            } else {
+                searchRecipesBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 mr-2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg> Search Recipes`;
+                searchRecipesBtn.disabled = false;
+            }
+        }
+
+        function setError(message) {
+            if (message) {
+                errorDisplay.style.display = 'block';
+                errorDisplay.querySelector('span').textContent = message;
+            } else {
+                errorDisplay.style.display = 'none';
+                errorDisplay.querySelector('span').textContent = '';
+            }
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        renderIngredients();
+        fetchRecipes();
+    </script>
+</body>
+</html>
